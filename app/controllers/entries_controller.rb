@@ -1,7 +1,8 @@
 class EntriesController < ApplicationController
 
   def index
-    @entries = Entry.all
+    # @entries = Entry.all
+    @entries = Entry.where(:user_id => current_user.id)
   end
 
   def show
@@ -21,6 +22,7 @@ class EntriesController < ApplicationController
 
   def create
     @entry = Entry.new(entry_params)
+    @entry.user_id = current_user.id
 
     if @entry.save
       redirect_to @entry
