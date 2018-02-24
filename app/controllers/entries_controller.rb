@@ -10,6 +10,9 @@ class EntriesController < ApplicationController
 
   def new
     @entry = Entry.new
+    forismatic = HTTParty.get('https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en')
+    @quote = forismatic["quoteText"]
+    @author = forismatic["quoteAuthor"]
   end
 
   def edit
