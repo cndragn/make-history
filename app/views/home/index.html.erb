@@ -1,36 +1,43 @@
 
-<h1>Hello, Whoever You Are!</h1>
-<%= link_to 'Private Journal', controller: 'entries' %>
+<header>
+  <h1>Make History</h1>
+  <p>Create a journal of your most memorable life events.<p>
 
-<%= link_to 'New entry', new_entry_path %>
 
-<p>
-  <%= @year %>
-</p>
-<p>
-  <%= @event %>
-</p>
+    <% if user_signed_in? %>
 
-<h2>Log In</h2>
+    <%= link_to 'View Journal', controller: 'entries' %>
 
-<%= form_for(:user, :url => session_path(:user)) do |f| %>
-  <%= f.text_field :email %>
-  <%= f.password_field :password %>
-  <%= f.check_box :remember_me %>
-  <%= f.label :remember_me %>
-  <%= f.submit 'Sign in' %>
-  <%= link_to "Forgot your password?", new_password_path(:user) %>
-<% end %>
+    <%= link_to 'Create New Entry', new_entry_path %>
 
-<% if user_signed_in? %>
-  <li>
-  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-  </li>
-<% else %>
-  <li>
-  <%= link_to('Login', new_user_session_path)  %>
-  </li>
-  <li>
-  <%= link_to('Register', new_user_registration_path)  %>
-  </li>
-<% end %>
+    <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+
+    <% else %>
+    <div class="login">
+      <%= form_for(:user, :url => session_path(:user)) do |f| %>
+
+      <div class="field">
+        <%= f.text_field :email, placeholder: "Email", autofocus: true, autocomplete: "email" %>
+        <%= f.password_field :password, placeholder: "Password", autocomplete: "off" %>
+        <%= f.submit "Log in" %>
+      </div>
+
+      <%= link_to('Register', new_user_registration_path)  %>
+      <%= link_to "Forgot your password?", new_password_path(:user) %>
+      <% end %>
+
+      <div>
+
+        <% end %>
+
+        <h2><%= Date.today.to_s(:long) %></h2>
+      </header>
+      <div class="onthisday">
+        <h2>On This Day In History</h2>
+
+        <%= @month %>
+        <ul>
+          <!-- <%= @theyear.try(:html_safe) %> -->
+          <%= @onthisday.to_s.html_safe %>
+        </ul>
+      </div>

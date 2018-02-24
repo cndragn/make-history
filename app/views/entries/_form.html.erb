@@ -1,4 +1,5 @@
-<%= form_with model: @entry, local: true do |form| %>
+<div class="diary">
+  <%= form_with model: @entry, local: true do |form| %>
 
   <% if @entry.errors.any? %>
     <div id="error_explanation">
@@ -21,7 +22,7 @@
 
   <p>
     <%= form.label :text %><br>
-    <%= form.text_area :text %>
+    <%= form.text_area :text, rows: "10" %>
   </p>
 
   <p>
@@ -30,3 +31,4 @@
   </p>
 
 <% end %>
+</div>

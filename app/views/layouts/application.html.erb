@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Journal</title>
+  <title>Make History</title>
   <%= csrf_meta_tags %>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,9 +9,23 @@
 </head>
 
 <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <div class="container">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
-  <%= yield %>
+    <%= yield %>
+  </div>
+  <footer>
+    <div class="container">
+      <div class="copyright">
+        &copy;<%= @year %> Candice Davidson
+      </div>
+      <div class="attr">
+        Attributions:<br>
+        Inspirational Quotes: Forismatic API<br>
+        On This Day In History facts web scrape: Factmonster.com
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

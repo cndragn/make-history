@@ -49,6 +49,8 @@ group :development do
   gem 'nokogiri'
   gem 'httparty'
   gem 'devise'
+  gem 'bootstrap', '~> 4.0.0'
+  gem 'sprockets-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

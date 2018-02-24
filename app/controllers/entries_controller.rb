@@ -3,6 +3,8 @@ class EntriesController < ApplicationController
   def index
     # @entries = Entry.all
     @entries = Entry.where(:user_id => current_user.id)
+    date = Time.now
+    @year = date.strftime("%Y")
   end
 
   def show

@@ -3,24 +3,26 @@ class HomeController < ApplicationController
   def index
     month = "february"
     day = 25
-    destUrl = "https://www.factmonster.com/dayinhistory/february-25"
+
+    date = Time.now
+    # @month = date.strftime("%B %d, %Y")
+    month = date.strftime("%B")
+    day = date.strftime("%d")
+    @year = date.strftime("%Y")
+
+    destUrl = "https://www.factmonster.com/dayinhistory/#{month}-#{day}"
 
     destResponse = HTTParty.get(destUrl)
 
     destDom = Nokogiri::HTML(destResponse.body)
 
-    theyear = destDom.css('.history-current-events ul li h3')
-    thisday = destDom.css('.history-current-events ul li p')
+    thisday = destDom.css('.history-current-events ul li')
 
-    @year = []
-    theyear.each do |years|
-      @year << years.text
+    thisday.search('//a[not(starts-with(@href, "http://"))]').each do |a|
+      a.replace(a.content)
     end
 
-    @event = []
-    thisday.each do |events|
-      @event << events.text
-    end
+    @onthisday = thisday
 
   end
 end
