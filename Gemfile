@@ -37,7 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'nokogiri'
 gem 'httparty'
 gem 'devise'
-gem 'bootstrap', '~> 4.0.0'
+gem "bootstrap", ">= 4.1.2"
 gem 'sprockets-rails'
 
 group :development, :test do
